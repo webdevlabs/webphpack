@@ -1,5 +1,5 @@
 # WebPHPack
-WebPHPack is a php alternative to webpack for auto combining multiple JS and CSS files into single files. 
+WebPHPack is a simple php alternative to webpack for auto combining multiple JS and CSS files into single files. 
 
 ### Usage
 ```
