@@ -8,9 +8,7 @@
  *
  * Usage:
  * $webphpack = new WebPHPack($htmlsource);
- * $webphpack->combineJS();
- * $webphpack->combineCSS();
- * $newsource = $webphpack->output();
+ * $newsource = $webpack->combineJS()->output();
  */
 
 class WebPHPack 
@@ -63,6 +61,7 @@ class WebPHPack
 		$filectime = filectime($this->outputPath.'/front.js');
 		$newsrc = str_replace('</head>', '<script src="'.$this->outputURL.'/front.js?'.$filectime.'" async></script></head>', $newsrc);
 		$this->outputHTML = $newsrc;
+        return $this;
     }
 
 }
