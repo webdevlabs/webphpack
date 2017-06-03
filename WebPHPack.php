@@ -7,10 +7,10 @@
  * @author Simeon Lyubenov <lyubenov@gmail.com> www.webdevlabs.com
  *
  */
-define('BASE_URL','http://localhost');
-define('ROOT_DIR',dirname(__DIR__));
+define('BASE_URL', 'http://localhost');
+define('ROOT_DIR', dirname(__DIR__));
 
-class WebPHPack 
+class WebPHPack
 {
     private $outputHTML;
     private $baseURL;
@@ -31,7 +31,7 @@ class WebPHPack
         $this->outputURL = BASE_URL.'/assets/cache';
         $this->excludeJS = ['cart'];
         $this->excludeCSS = ['theme.min'];
-        $this->caching = true;
+        $this->caching = false;
     }
 
     public function output()
@@ -64,14 +64,14 @@ class WebPHPack
 			}
 		}
 		clearstatcache();
-		$filectime = filectime($this->outputPath.'/front.js');
-		$newsrc = str_replace('</head>', '<script src="'.$this->outputURL.'/front.js?'.$filectime.'" async></script></head>', $newsrc);
+		$filetime = filemtime($this->outputPath.'/front.js');
+		$newsrc = str_replace('</head>', '<script src="'.$this->outputURL.'/front.js?'.$filetime.'" async></script></head>', $newsrc);
 		$this->outputHTML = $newsrc;
         return $this;
     }
 
 	public function combineCSS() 
-    {
+	{
 		$pma = preg_match_all('/<link[^>]*href="([^"]*)\.css[^>]*"[^>]*>/', $this->outputHTML, $matches);
 		if (($pma !== false && $pma > 0) && (!file_exists($this->outputPath.'/front.css') || $this->caching===false)) {
 			$csscombined = "/* bgCMS Auto-Generated CSS File */\n";
@@ -94,8 +94,8 @@ class WebPHPack
 			}
 		}
 		clearstatcache();
-		$filectime = filectime($this->outputPath.'/front.css');
-		$newsrc = str_replace('</head>', '<link href="'.$this->outputURL.'/front.css?'.$filectime.'" rel="preload" as="style" onload="this.rel=\'stylesheet\'">'.'</head>', $newsrc);
+		$filetime = filemtime($this->outputPath.'/front.css');
+		$newsrc = str_replace('</head>', '<link href="'.$this->outputURL.'/front.css?'.$filetime.'" rel="preload" as="style" onload="this.rel=\'stylesheet\'">'.'</head>', $newsrc);
 		$this->outputHTML = $newsrc;
         return $this;
 	}
