@@ -6,6 +6,7 @@ WebPHPack is a php alternative to webpack for auto combining multiple JS and CSS
 $webphpack = new WebPHPack($htmlsource);
 $webphpack->combineJS();
 $webphpack->combineCSS();
+$webphpack->output();
 ```
 or nested
 ```
