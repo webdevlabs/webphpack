@@ -11,7 +11,7 @@
 class WebPHPack
 {
     private $outputHTML;
-    public $baseURL;
+    public $matchString;
     public $outputURL;
     public $outputPath;
     public $jsPath, $cssPath;
