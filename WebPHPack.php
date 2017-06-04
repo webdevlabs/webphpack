@@ -7,19 +7,17 @@
  * @author Simeon Lyubenov <lyubenov@gmail.com> www.webdevlabs.com
  *
  */
-define('BASE_URL', 'http://localhost');
-define('ROOT_DIR', dirname(__DIR__));
 
 class WebPHPack
 {
     private $outputHTML;
-    private $baseURL;
-    private $outputURL;
-    private $outputPath;
-    private $jsPath, $cssPath;
-    private $excludeCSS, $excludeJS;    
-    private $outputJSfilename, $outputCSSfilename;    
-    private $caching;
+    public $baseURL;
+    public $outputURL;
+    public $outputPath;
+    public $jsPath, $cssPath;
+    public $excludeCSS, $excludeJS;    
+    public $outputJSfilename, $outputCSSfilename;    
+    public $caching;
 
     public function __construct($inputHTML)
     {
@@ -32,7 +30,7 @@ class WebPHPack
         $this->outputJSfilename = 'front.js';
         $this->outputCSSfilename = 'front.css';
         $this->excludeJS = [];
-        $this->excludeCSS = ['theme.min'];
+        $this->excludeCSS = [];
         $this->caching = false;
     }
 
