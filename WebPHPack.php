@@ -74,7 +74,7 @@ class WebPHPack
     {
 		$pma = preg_match_all('/<link[^>]*href="([^"]*)\.css[^>]*"[^>]*>/', $this->outputHTML, $matches);
 		if (($pma !== false && $pma > 0) && (!file_exists($this->outputPath.'/'.$this->outputCSSfilename) || $this->caching===false)) {
-			$csscombined = "/* bgCMS Auto-Generated CSS File */\n";
+			$csscombined = "/* WebPHPack Auto-Generated CSS File */\n";
 			foreach ($matches[1] as $match) {
 				if (strpos($match, $this->baseURL) !== false) {
 				if (in_array(basename($match), $this->excludeCSS)) {continue;}					
