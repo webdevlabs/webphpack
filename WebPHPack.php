@@ -96,7 +96,7 @@ class WebPHPack
 		}
 		clearstatcache();
 		$filetime = filemtime($this->outputPath.'/'.$this->outputCSSfilename);
-		$newsrc = str_replace('</head>', '<link href="'.$this->outputURL.'/'.$this->outputCSSfilename.'?'.$filetime.'" rel="preload" as="style" onload="this.rel=\'stylesheet\'">'.'</head>', $newsrc);
+		$newsrc = str_replace('</head>', '<link href="'.$this->outputURL.'/'.$this->outputCSSfilename.'?'.$filetime.'" rel="stylesheet" media="none" onload="if(media!=\'all\')media=\'all\'">'.'</head>', $newsrc);
 		$this->outputHTML = $newsrc;
         return $this;
 	}
