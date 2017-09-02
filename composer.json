@@ -1,5 +1,5 @@
 {
-    "name": "webdevlabs/WebPHPack",
+    "name": "webdevlabs/webphpack",
     "description": "simple php alternative to webpack for automatic concatenation of multiple JavaScript and CSS files into single files",
     "keywords": [
         "webpack", "webphpack", "php-library"
