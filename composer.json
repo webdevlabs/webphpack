@@ -1,10 +1,11 @@
 {
     "name": "webdevlabs/webphpack",
+    "type": "package",
     "description": "simple php alternative to webpack for automatic concatenation of multiple JavaScript and CSS files into single files",
     "keywords": [
         "webpack", "webphpack", "php-library"
     ],
-    "homepage": "https://github.com/webdevlabs/WebPHPack",
+    "homepage": "https://github.com/webdevlabs/webphpack",
     "license": "MIT",
     "authors": [{
         "name": "Simeon Lyubenov",
@@ -12,6 +13,12 @@
         "homepage": "https://www.webdevlabs.com",
         "role": "Developer"
     }],
+    "support": {
+        "irc": "irc://irc.lamez.org/Lamez",
+        "issues": "https://github.com/webdevlabs/webphpack/issues",
+        "wiki": "https://github.com/webdevlabs/webphpack/wiki",
+        "source": "https://github.com/webdevlabs/webphpack"
+    },
     "require": {
         "php": ">=5.6.0"
     },
