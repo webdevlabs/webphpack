@@ -78,7 +78,7 @@ class WebPHPack
         $filetime = filemtime($this->outputPath.'/'.$this->outputJSfilename);
         $newsrc = str_replace('</head>', '<script async src="'.$this->outputURL.'/'.$this->outputJSfilename.'?'.$filetime.'"></script></head>', $newsrc);
         $this->headerlinks[] = [
-            'link'=>$this->outputURL.'/'.$this->outputJSfilename,
+            'link'=>$this->outputURL.'/'.$this->outputJSfilename.'?'.$filetime,
             'type'=>'script'
         ];        
         $this->outputHTML = $newsrc;
@@ -113,7 +113,7 @@ class WebPHPack
         $filetime = filemtime($this->outputPath.'/'.$this->outputCSSfilename);
         $newsrc = str_replace('</head>', '<link href="'.$this->outputURL.'/'.$this->outputCSSfilename.'?'.$filetime.'" rel="stylesheet" media="none" onload="if(media!=\'all\')media=\'all\'">'.'</head>', $newsrc);
         $this->headerlinks[] = [
-            'link'=>$this->outputURL.'/'.$this->outputCSSfilename,
+            'link'=>$this->outputURL.'/'.$this->outputCSSfilename.'?'.$filetime,
             'type'=>'style'
         ];
         $this->outputHTML = $newsrc;
