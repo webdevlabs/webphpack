@@ -1,6 +1,6 @@
 <?php
 /**
- * WebPHPack v1.2.2
+ * WebPHPack v1.2.3
  * webpack PHP alternative
  * 
  * @package phreak 
@@ -8,7 +8,7 @@
  *
  */
 
-namespace Phreak\WebPHPack;
+namespace Phreak;
 
 class WebPHPack
 {
@@ -16,10 +16,15 @@ class WebPHPack
     public $matchString;
     public $outputURL;
     public $outputPath;
-    public $jsPath, $cssPath;
-    public $excludeCSS, $excludeJS;    
-    public $outputJSfilename, $outputCSSfilename;    
+    public $jsPath;
+    public $cssPath;
+    public $excludeCSS;
+    public $excludeJS;    
+    public $outputJSfilename;
+    public $outputCSSfilename;    
     public $caching;
+    public $httpush;
+    private $headerlinks;
 
     public function __construct($inputHTML)
     {
@@ -34,10 +39,14 @@ class WebPHPack
         $this->excludeJS = [];
         $this->excludeCSS = [];
         $this->caching = false;
+        $this->httpush = false;
     }
 
     public function output()
     {
+        if ($this->httpush) {
+            $this->pushHeaders();
+        }
         return $this->outputHTML;
     }
 
@@ -68,6 +77,10 @@ class WebPHPack
         clearstatcache();
         $filetime = filemtime($this->outputPath.'/'.$this->outputJSfilename);
         $newsrc = str_replace('</head>', '<script async src="'.$this->outputURL.'/'.$this->outputJSfilename.'?'.$filetime.'"></script></head>', $newsrc);
+        $this->headerlinks[] = [
+            'link'=>$this->outputURL.'/'.$this->outputJSfilename,
+            'type'=>'script'
+        ];        
         $this->outputHTML = $newsrc;
         return $this;
     }
@@ -99,8 +112,21 @@ class WebPHPack
         clearstatcache();
         $filetime = filemtime($this->outputPath.'/'.$this->outputCSSfilename);
         $newsrc = str_replace('</head>', '<link href="'.$this->outputURL.'/'.$this->outputCSSfilename.'?'.$filetime.'" rel="stylesheet" media="none" onload="if(media!=\'all\')media=\'all\'">'.'</head>', $newsrc);
+        $this->headerlinks[] = [
+            'link'=>$this->outputURL.'/'.$this->outputCSSfilename,
+            'type'=>'style'
+        ];
         $this->outputHTML = $newsrc;
         return $this;
+    }
+
+    public function pushHeaders()
+    {
+        $pushlinks='';
+        foreach ($this->headerlinks as $resource => $src) {
+            $pushlinks .= '<'.$src['link'].'>; rel=preload; as='.$src['type'].', ';             
+        }
+        header("Link: ".$pushlinks);
     }
 
 }
