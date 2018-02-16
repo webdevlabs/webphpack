@@ -7,7 +7,7 @@
     ],
     "homepage": "https://github.com/webdevlabs/webphpack",
     "license": "MIT",
-    "version": "0.0.2",
+    "version": "1.2.3",
     "authors": [{
         "name": "Simeon Lyubenov",
         "email": "lyubenov@gmail.com",
@@ -25,7 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Phreak\\WebPHPack\\": "src"
+            "Phreak\\": "src"
         }
     }
 }
