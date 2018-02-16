@@ -4,11 +4,13 @@
 This library replaces the style/script tags from the input html source code and returns plain html code ready for output.
 Loading is done asynchronously for both javascript/css.
 
+**Added HTTP2 Push support.** 
 
 ### Usage
 ```
 $webphpack = new WebPHPack($htmlsource);
 $webphpack->caching = true;
+$webphpack->httpush = true;
 $webphpack->combineJS();
 $webphpack->combineCSS();
 $webphpack->output();
